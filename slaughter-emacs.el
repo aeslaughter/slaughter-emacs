@@ -6,6 +6,7 @@
 ;(setq slaughter-package-list nil)
 
 (package-initialize)
+(package-refresh-contents)
 
 (defun slaughter-install-package (pkg)
   (unless (package-installed-p pkg)
