@@ -6,14 +6,14 @@
 (require 'dash)
 
 ;(global-flycheck-mode)
-(slaughter-package-install 'helm-flycheck)
-(require 'helm-flycheck)
+;;(slaughter-package-install 'helm-flycheck)
+;;(require 'helm-flycheck)
 
-(slaughter-package-install 'flyspell-correct-helm)
-(require 'flyspell-correct-helm)
+;;(slaughter-package-install 'flyspell-correct-helm)
+;;(require 'flyspell-correct-helm)
 
-;;(slaughter-package-install 'flyspell-correct-ivy)
-;;(require 'flyspell-correct-ivy)
+(slaughter-package-install 'flyspell-correct-ivy)
+(require 'flyspell-correct-ivy)
 
 ;; slaughter 
 

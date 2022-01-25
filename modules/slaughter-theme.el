@@ -11,4 +11,4 @@
 
 
 (set-face-foreground 'font-lock-string-face "#AAFF00")
-(set-face-foreground 'font-lock-comment-face "#0096FF")
+(set-face-foreground 'font-lock-comment-face "#005FAF")

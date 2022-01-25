@@ -3,9 +3,6 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
-
-;; slaughtr 
-
 (package-initialize)
 
 ;; install a package if it does not exist
@@ -19,14 +16,17 @@
 (load-file (concat this-directory "/modules/slaughter-theme.el"))
 (load-file (concat this-directory "/modules/slaughter-projectile.el"))
 (load-file (concat this-directory "/modules/slaughter-helm.el"))
-;;(load-file (concat this-directory "/modules/slaughter-ivy.el"))
+(load-file (concat this-directory "/modules/slaughter-ivy.el"))
 ;; swoop/swiper...
 (load-file (concat this-directory "/modules/slaughter-flycheck.el")) ; requires helm/ivy
 (load-file (concat this-directory "/modules/slaughter-company.el"))
 (load-file (concat this-directory "/modules/slaughter-undo.el"))
 (load-file (concat this-directory "/modules/slaughter-expand-region.el"))
 (load-file (concat this-directory "/modules/slaughter-multiple-cursors.el"))
-(load-file (concat this-directory "/modules/slaughter-languages.el"))
+(load-file (concat this-directory "/modules/slaughter-smartparens.el"))
+(load-file (concat this-directory "/modules/slaughter-deft.el"))
+
+(load-file (concat this-directory "/modules/slaughter-languages.el")) ;; TODO: add scribble
 
 ;;(load-file "modules/slaughter-easy-kill.el")
 
@@ -37,9 +37,10 @@
 (setq require-final-newline t)
 
 (setq inhibit-startup-screen t)
-(delete-selection-mode 1)
-(tool-bar-mode 0)
-(menu-bar-mode 0) 
+(delete-selection-mode)
+(setq tool-bar-mode 0)
+(setq menu-bar-mode 0) 
+
 (setq inhibit-startup-screen t)
 ;; TODO:
 ;; - org mode for notes
@@ -68,4 +69,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(sp-pair-overlay-face ((t (:background "color-17")))))
