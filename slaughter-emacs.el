@@ -25,6 +25,7 @@
 (load-file (concat this-directory "/modules/slaughter-multiple-cursors.el"))
 (load-file (concat this-directory "/modules/slaughter-smartparens.el"))
 (load-file (concat this-directory "/modules/slaughter-deft.el"))
+(load-file (concat this-directory "/modules/slaughter-magit.el"))
 
 (load-file (concat this-directory "/modules/slaughter-languages.el")) ;; TODO: add scribble
 
@@ -54,5 +55,3 @@
 ;; navigation C-left, C-up, ... to C-h, C-k, ... to mimic vi
 ;; go to definition M-> C-< ???
 ;;
-
-
