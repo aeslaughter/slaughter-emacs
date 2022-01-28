@@ -56,17 +56,3 @@
 ;;
 
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(multiple-cursors expand-region undo-tree helm-company company flyspell-correct-helm helm-flycheck flycheck helm-swoop helm-projectile helm seti-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(sp-pair-overlay-face ((t (:background "color-17")))))
