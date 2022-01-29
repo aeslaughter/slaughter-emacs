@@ -61,7 +61,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(scribble-mode undo-tree typescript-mode smartparens seti-theme ripgrep racket-mode multiple-cursors markdown-mode magit helm flyspell-correct-ivy flycheck expand-region deft counsel-projectile company auto-complete)))
+   '(highlight-parentheses scribble-mode undo-tree typescript-mode smartparens seti-theme ripgrep racket-mode multiple-cursors markdown-mode magit helm flyspell-correct-ivy flycheck expand-region deft counsel-projectile company auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
