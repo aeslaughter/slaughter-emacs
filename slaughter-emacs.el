@@ -22,6 +22,7 @@
 (load-file (concat this-directory "/modules/slaughter-company.el"))
 (load-file (concat this-directory "/modules/slaughter-undo.el"))
 (load-file (concat this-directory "/modules/slaughter-expand-region.el"))
+;(load-file (concat this-directory "/modules/slaughter-easy-kill.el"))
 (load-file (concat this-directory "/modules/slaughter-multiple-cursors.el"))
 (load-file (concat this-directory "/modules/slaughter-smartparens.el"))
 (load-file (concat this-directory "/modules/slaughter-deft.el"))
@@ -29,7 +30,6 @@
 
 (load-file (concat this-directory "/modules/slaughter-languages.el")) ;; TODO: add scribble
 
-;;(load-file "modules/slaughter-easy-kill.el")
 
 (global-display-line-numbers-mode)
 (setq line-numbers-mode t)

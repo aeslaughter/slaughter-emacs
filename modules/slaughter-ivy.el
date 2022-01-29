@@ -27,3 +27,9 @@
 (global-set-key (kbd "C-x C-p") 'counsel-projectile-switch-project)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-u") 'swiper-thing-at-point)
+
+
+(defun swiper-isearch-again ()
+  (interactive)
+  (swiper-isearch (car swiper-history)))
+(global-set-key (kbd "C-s C-s") 'swiper-isearch-again)
