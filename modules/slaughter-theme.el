@@ -8,7 +8,7 @@
 (set-face-attribute 'default t :font "Menlo-13" )
 
 (set-face-attribute 'region nil :background "#555")
-
+(set-face-attribute 'highlight nil :background "#444")
 
 (set-face-foreground 'font-lock-string-face "#AAFF00")
 (set-face-foreground 'font-lock-comment-face "#005FAF")

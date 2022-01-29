@@ -24,6 +24,6 @@
 (global-set-key (kbd "C-x r") 'counsel-recentf)
 (global-set-key (kbd "C-x b") 'counsel-projectile-switch-to-buffer)
 (global-set-key (kbd "C-x p") 'counsel-projectile-find-file)
-(global-set-key (kbd "C-x o") 'counsel-projectile-switch-project)
+(global-set-key (kbd "C-x C-p") 'counsel-projectile-switch-project)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-u") 'swiper-thing-at-point)
