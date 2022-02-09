@@ -2,7 +2,8 @@
 (slaughter-package-install 'projectile)
 (projectile-global-mode)
 
+(setq projectile-sort-order 'recentf)
+
 ;; KEYBINDINGS
-(global-set-key (kbd "C-x g") 'projectile-ripgrep)
 
 

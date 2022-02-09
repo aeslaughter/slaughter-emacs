@@ -2,7 +2,7 @@
 (slaughter-package-install 'markdown-mode)
 (slaughter-package-install 'racket-mode)
 (slaughter-package-install 'scribble-mode)
-
+(slaughter-package-install 'cmake-mode)
 ;;(load-file (concat this-directory "/modules/contrib/scribble-mode.el"))
 
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))

@@ -39,29 +39,18 @@
 
 (setq inhibit-startup-screen t)
 (delete-selection-mode)
-(setq tool-bar-mode 0)
-(setq menu-bar-mode 0) 
+(tool-bar-mode -1)
+(menu-bar-mode -1) 
+(global-auto-revert-mode t)
 
 (setq inhibit-startup-screen t)
-;; TODO:
-;; - org mode for notes
-
-;; todo: keybindings
-;; create load slaughter-keybindings.el at top level
-;; helm kill ring
-;; delete line, after cursor, before cursor
-;; newline above/below
-;; copy line above/below
-;; navigation C-left, C-up, ... to C-h, C-k, ... to mimic vi
-;; go to definition M-> C-< ???
-;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(highlight-parentheses scribble-mode undo-tree typescript-mode smartparens seti-theme ripgrep racket-mode multiple-cursors markdown-mode magit helm flyspell-correct-ivy flycheck expand-region deft counsel-projectile company auto-complete)))
+   '(cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
