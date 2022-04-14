@@ -12,3 +12,7 @@
 
 (set-face-foreground 'font-lock-string-face "#AAFF00")
 (set-face-foreground 'font-lock-comment-face "#005FAF")
+
+
+;;(set-face-background 'helm-swoop-target-word-face "#AAFF00")
+

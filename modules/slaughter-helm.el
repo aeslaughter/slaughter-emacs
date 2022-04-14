@@ -12,16 +12,18 @@
 ;;(recentf-mode 1)
 
 (setq helm-ff-file-name-history-use-recentf 1)
-;;(setq helm-always-two-windows t)
+(setq helm-swoop-speed-or-color t)
+(setq helm-always-two-windows t)
 
 ;;(setq helm-buffers-truncate-lines nil)
 ;;(setq helm-split-window-inside-p t)
 ;;(slaughter-package-install 'helm-projectile)
 ;;(require 'helm-projectile)
-;;(helm-projectile-on)
+(helm-projectile-on)
 
-;;(slaughter-package-install 'helm-swoop)
-;;(require 'helm-swoop)
+(slaughter-package-install 'helm-swoop)
+(require 'helm-swoop)
+
 ;;(slaughter-package-install 'swiper-helm)
 ;;(require 'swiper-helm)
 
@@ -46,4 +48,5 @@
 ;;(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)
 ;;(define-key helm-map (kbd "<tab>") #'helm-execute-persistent-action)
 ;;(define-key helm-map (kbd "C-z") #'helm-select-action)
+
 
