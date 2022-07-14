@@ -5,6 +5,7 @@
 
 (setq undo-tree-visualizer-timestamps t)
 (setq undo-tree-visualizer-diff t)
+(setq undo-tree-auto-save-history nil)
 
 (defun undo-tree-visualizer-update-linum (&rest args)
     (linum-update undo-tree-visualizer-parent-buffer))

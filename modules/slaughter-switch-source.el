@@ -11,4 +11,5 @@
       (find-file fn)
       (message "No file exists: %s" fn)))
 
-(define-key global-map "\C-cc" 'switch-hpp-cpp)
+(global-set-key (kbd "C-c c") (lambda () (interactive) (switch-hpp-cpp)))
+;(define-key global-map "\C-cc" 'ff-other-file-alist)

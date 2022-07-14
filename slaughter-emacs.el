@@ -29,11 +29,11 @@
 (load-file (concat this-directory "/modules/slaughter-magit.el"))
 
 (load-file (concat this-directory "/modules/slaughter-languages.el")) ;; TODO: add scribble
-(load-file (concat this-directory "/modules/slaughter-backup.el")) ;; TODO: add scribble
+(load-file (concat this-directory "/modules/slaughter-backup.el"))
 
+(load-file (concat this-directory "/modules/slaughter-jump.el"))
 (load-file (concat this-directory "/modules/slaughter-switch-source.el"))
 
-(slaughter-package-install 'dumb-jump)
 
 (global-display-line-numbers-mode)
 (setq line-numbers-mode t)
