@@ -3,7 +3,7 @@
 (slaughter-package-install 'ivy)
 (require 'ivy)
 (ivy-mode)
-(counsel-mode)
+;;(counsel-mode)
 
 (recentf-mode 1)
 
