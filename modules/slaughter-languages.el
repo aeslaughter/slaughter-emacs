@@ -18,6 +18,10 @@
 (slaughter-package-install 'cmake-mode)
 (slaughter-package-install 'company)
 
+(add-hook 'scribble-mode-hook 'flyspell-mode)
+(add-hook 'racket-mode-hook 'flyspell-mode)
+(add-hook 'typescript-mode-hook 'flyspell-mode)
+
 (slaughter-package-install 'tide)
 (defun setup-tide-mode ()
   (interactive)
@@ -49,7 +53,7 @@
 (slaughter-package-install 'ccls)
 (setq ccls-executable "/usr/bin/ccls")
 
-
+(slaughter-package-install 'yasnippet)
 (slaughter-package-install 'lsp-mode)
 (slaughter-package-install 'helm-lsp)
 (slaughter-package-install 'helm-xref)
