@@ -1,3 +1,6 @@
+
+
+
 ;;(slaughter-package-install 'eglot)
 
 ;;(slaughter-package-install 'lsp-mode)
@@ -46,9 +49,15 @@
 (slaughter-package-install 'ccls)
 (setq ccls-executable "/usr/bin/ccls")
 
+
 (slaughter-package-install 'lsp-mode)
-(slaughter-package-install 'lsp-ivy)
-(slaughter-package-install 'ivy-xref)
+(slaughter-package-install 'helm-lsp)
+(slaughter-package-install 'helm-xref)
+;;(define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
+
+;(slaughter-package-install 'lsp-mode)
+;(slaughter-package-install 'lsp-ivy)
+;(slaughter-package-install 'ivy-xref)
 
 ;; Enable helm-gtags-mode
 ;;(slaughter-package-install 'gtags-mode)

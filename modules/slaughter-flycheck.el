@@ -10,15 +10,15 @@
 (require 'flycheck-aspell)
 
 
-global-flycheck-mode)
-(slaughter-package-install 'helm-flycheck)
-(require 'helm-flycheck)
+(global-flycheck-mode)
+;(slaughter-package-install 'helm-flycheck)
+;(require 'helm-flycheck)
 
 ;(slaughter-package-install 'flyspell-correct-helm)
 ;(require 'flyspell-correct-helm)
 
-;;(slaughter-package-install 'flyspell-correct-popup)
-;;(require 'flyspell-correct-popup)
+(slaughter-package-install 'flyspell-correct-popup)
+(require 'flyspell-correct-popup)
 
 
 ;;(slaughter-package-install 'flyspell-correct-ivy)
