@@ -13,12 +13,10 @@
 
 (setq helm-ff-file-name-history-use-recentf 1)
 (setq helm-swoop-speed-or-color t)
-(setq helm-always-two-windows t)
+;;(setq helm-always-two-windows t)
 
 ;;(setq helm-buffers-truncate-lines nil)
-;;(setq helm-split-window-inside-p t)
-;;(slaughter-package-install 'helm-projectile)
-;;(require 'helm-projectile)
+(setq helm-split-window-inside-p t)
 (helm-projectile-on)
 
 (slaughter-package-install 'helm-swoop)
@@ -42,7 +40,7 @@
 (global-set-key (kbd "C-s") 'helm-swoop-without-pre-input)
 (global-set-key (kbd "C-u") 'helm-swoop)
 
-;;(global-set-key (kbd "C-s") 'swiper-helm)
+ ;global-set-key (kbd "C-s") 'swiper-helm)
 ;;(global-set-key (kbd "C-s C-s") 'swiper-thing-at-point)
 
 ;;(define-key helm-map (kbd "TAB") #'helm-execute-persistent-action)

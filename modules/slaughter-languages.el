@@ -48,6 +48,7 @@
 
 (slaughter-package-install 'lsp-mode)
 (slaughter-package-install 'lsp-ivy)
+(slaughter-package-install 'ivy-xref)
 
 ;; Enable helm-gtags-mode
 ;;(slaughter-package-install 'gtags-mode)

@@ -6,7 +6,6 @@
   ;; and the extension, converted to lowercase so we can
   ;; compare it to "h", "c", "cpp", etc
   (setq ext (downcase (file-name-extension buffer-file-name)))
-  (message "%s %s %s %s" "SWTICH" buffer-file-name ext (string-match-p "\\.cp\\{0,2\\}\\'" buffer-file-name))
 
   (cond
    ((string-match-p "\\.hp\\{0,2\\}\\'" buffer-file-name)
