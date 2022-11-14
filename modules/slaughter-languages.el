@@ -21,6 +21,12 @@
 (add-hook 'scribble-mode-hook 'flyspell-mode)
 (add-hook 'racket-mode-hook 'flyspell-mode)
 (add-hook 'typescript-mode-hook 'flyspell-mode)
+(add-hook 'c-mode-hook 'flyspell-mode)
+(add-hook 'c++-mode-hook 'flyspell-mode)
+
+;;(add-hook 'c-mode-hook #'lsp)
+;;(add-hook 'c++-mode-hook #'lsp)
+;;(add-hook 'racket-mode-hook #'lsp)
 
 (slaughter-package-install 'tide)
 (defun setup-tide-mode ()
