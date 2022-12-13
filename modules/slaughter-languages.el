@@ -1,16 +1,14 @@
 
+;; TODO: eglot will be included in emacs 29
+(slaughter-package-install 'eglot)
 
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(c++-mode . ("clangd")))
+  (add-to-list 'eglot-server-programs
+               '(c-mode . ("clangd"))))
 
-;;(slaughter-package-install 'eglot)
-
-;;(slaughter-package-install 'lsp-mode)
-;;(slaughter-package-install 'lsp-ui)
-;;(slaughter-package-install 'lsp-treemacs)
-;;(slaughter-package-install 'lsp-ivy)
-;
-;;(lsp-install-server 'clangd)
-;;(lsp-install-server 'ts-ls)
-
+ 
 (slaughter-package-install 'typescript-mode)
 (slaughter-package-install 'markdown-mode)
 (slaughter-package-install 'racket-mode)
@@ -24,8 +22,8 @@
 (add-hook 'c-mode-hook 'flyspell-mode)
 (add-hook 'c++-mode-hook 'flyspell-mode)
 
-;;(add-hook 'c-mode-hook #'lsp)
-;;(add-hook 'c++-mode-hook #'lsp)
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
 ;;(add-hook 'racket-mode-hook #'lsp)
 
 (slaughter-package-install 'tide)
@@ -52,38 +50,4 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-
 (setq-default c-basic-offset 4)
-
-
-(slaughter-package-install 'ccls)
-(setq ccls-executable "/usr/bin/ccls")
-
-(slaughter-package-install 'yasnippet)
-(slaughter-package-install 'lsp-mode)
-(slaughter-package-install 'helm-lsp)
-(slaughter-package-install 'helm-xref)
-;;(define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
-
-;(slaughter-package-install 'lsp-mode)
-;(slaughter-package-install 'lsp-ivy)
-;(slaughter-package-install 'ivy-xref)
-
-;; Enable helm-gtags-mode
-;;(slaughter-package-install 'gtags-mode)
-;;(slaughter-package-install 'helm-gtags)
-;;
-;;(add-hook 'c-mode-hook 'helm-gtags-mode)
-;;(add-hook 'c++-mode-hook 'helm-gtags-mode)
-;;(add-hook 'asm-mode-hook 'helm-gtags-mode)
-;;
-;;;; Set key bindings
-;;(eval-after-load "helm-gtags"
-;;  '(progn
-;;     (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
-;;     (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
-;;     (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
-;;     (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
-;;     (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-;;     (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
-;;     (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
