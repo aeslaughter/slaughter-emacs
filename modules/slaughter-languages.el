@@ -1,5 +1,5 @@
 
-;; TODO: eglot will be included in emacs 29
+;; LSP with eglot (this will be standard in emacs 29)
 (slaughter-package-install 'eglot)
 
 (with-eval-after-load 'eglot
@@ -8,13 +8,18 @@
   (add-to-list 'eglot-server-programs
                '(c-mode . ("clangd"))))
 
- 
+
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+;;(add-hook 'racket-mode-hook #'lsp)
+
 (slaughter-package-install 'typescript-mode)
 (slaughter-package-install 'markdown-mode)
 (slaughter-package-install 'racket-mode)
 (slaughter-package-install 'scribble-mode)
 (slaughter-package-install 'cmake-mode)
 (slaughter-package-install 'company)
+(slaughter-package-install 'yasnippet)
 
 (add-hook 'scribble-mode-hook 'flyspell-mode)
 (add-hook 'racket-mode-hook 'flyspell-mode)
@@ -22,9 +27,6 @@
 (add-hook 'c-mode-hook 'flyspell-mode)
 (add-hook 'c++-mode-hook 'flyspell-mode)
 
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
-;;(add-hook 'racket-mode-hook #'lsp)
 
 (slaughter-package-install 'tide)
 (defun setup-tide-mode ()
