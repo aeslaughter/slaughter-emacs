@@ -52,4 +52,4 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-(setq-default c-basic-offset 4)
+(setq-default c-basic-offset 8)

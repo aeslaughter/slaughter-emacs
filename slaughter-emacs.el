@@ -1,10 +1,18 @@
 ;;;; Emacs for Andrew E Slaughter
 
 (require 'package)
+
+(add-to-list 'package-archives
+             '("elpa" . "https://elpa.org/packages/") t)
+
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
 (package-initialize)
+
+;; global variabls for directories
+(setq root-dir "~/slaughter-emacs")
+(setq contrib-dir (concat root-dir "/contrib"))
 
 ;; install a package if it does not exist
 (defun slaughter-package-install (pkg-name)
@@ -12,15 +20,31 @@
     (package-refresh-contents)
     (package-install pkg-name)))
 
+(defun slaughter-package-load (pkg-name &optional pkg-folder)
+  (unless pkg-folder (setq pkg-folder pkg-name))
+  (defvar-local pkg-path (expand-file-name (concat contrib-dir "/" pkg-folder)))
+  (message "Adding '%s' to load-path" pkg-path)
+  (add-to-list 'load-path pkg-path) 
+  )
+
+
 ;;(defvar-local this-directory (file-name-directory load-file-name))
+
 (defvar-local this-directory "~/slaughter-emacs")
 (load-file (concat this-directory "/modules/slaughter-theme.el"))
 (load-file (concat this-directory "/modules/slaughter-projectile.el"))
-(load-file (concat this-directory "/modules/slaughter-helm.el"))
-;;x(load-file (concat this-directory "/modules/slaughter-ivy.el"))
-;; swoop/swiper...
-(load-file (concat this-directory "/modules/slaughter-flycheck.el")) ; requires helm/ivy
+(load-file (concat this-directory "/modules/slaughter-vertico.el"))
+(load-file (concat this-directory "/modules/slaughter-orderless.el"))
+(load-file (concat this-directory "/modules/slaughter-consult.el"))
+(load-file (concat this-directory "/modules/slaughter-marginalia.el"))
+;;(load-file (concat this-directory "/modules/slaughter-corfu.el"))
 (load-file (concat this-directory "/modules/slaughter-company.el"))
+
+;;(load-file (concat this-directory "/modules/slaughter-helm.el"))
+
+;;(load-file (concat this-directory "/modules/slaughter-ivy.el"))
+
+(load-file (concat this-directory "/modules/slaughter-flycheck.el"))
 (load-file (concat this-directory "/modules/slaughter-undo.el"))
 (load-file (concat this-directory "/modules/slaughter-expand-region.el"))
 ;(load-file (concat this-directory "/modules/slaughter-easy-kill.el"))
@@ -35,7 +59,7 @@
 (load-file (concat this-directory "/modules/slaughter-jump.el"))
 (load-file (concat this-directory "/modules/slaughter-switch-source.el"))
 
-;;(load-file (concat this-directory "/modules/slaughter-eaf.el"))
+;(load-file (concat this-directory "/modules/slaughter-eaf.el"))
 
 
 (global-display-line-numbers-mode)
@@ -58,7 +82,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(h5dump-mode helm-xref ivy-xref ivy-lsp flycheck-aspell lsp-ivy lsp-treemacs lsp-ui lsp-mode dumb-jump tide flyspell-correct-popup cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
+   '(vertico vterm-toggle vterm multi-term h5dump-mode helm-xref ivy-xref ivy-lsp flycheck-aspell lsp-ivy lsp-treemacs lsp-ui lsp-mode dumb-jump tide flyspell-correct-popup cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
