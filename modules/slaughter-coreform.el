@@ -22,8 +22,8 @@
 
 (defun coreform-get-build-dir ()
   "Coreform: return the build directory."
-  (defvar-local build-dir (cond ((string-equal "darwin" system-type) "build_mac64")
-                                ((string-prefix-p "windows" system-type) "build_win64")
+  (defvar-local build-dir (cond ((string-equal "darwin" (symbol-name system-type)) "build_mac64")
+                                ((string-equal "windows-nt" (symbol-name system-type)) "build_win64")
                                 (t "build_lin64")))
   (concat (coreform-get-root-dir)  "/../" build-dir))
 
@@ -66,10 +66,10 @@
 
 (defvar coreform-map
   (let ((map (make-sparse-keymap)))
-    (define-key map "b d" 'coreform-build-debug)
-    (define-key map "b r" 'coreform-build-release)
-    (define-key map "d" 'coreform-ninja-debug)
-    (define-key map "r" 'coreform-ninja-release)
+    ;;(define-key map (kbd "C-d") 'coreform-build-debug)
+    ;;(define-key map (kbd "C-r") 'coreform-build-release)
+    (define-key map (kbd "d") 'coreform-ninja-debug)
+    (define-key map (kbd "r") 'coreform-ninja-release)
     map)
   "Coreform: key map for Coreform utilities.")
 (local-set-key (kbd "C-f") coreform-map)

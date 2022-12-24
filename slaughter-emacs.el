@@ -63,6 +63,9 @@
 
 ;(load-file (concat this-directory "/modules/slaughter-eaf.el"))
 
+;; TODO: add keybindings.el???
+(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+
 
 (global-display-line-numbers-mode)
 (setq line-numbers-mode t)
