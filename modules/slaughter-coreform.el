@@ -1,0 +1,48 @@
+;;; slaughter-coreform --- Utilities for building and running Coreform tools
+;;; Commentary:
+;;; 
+
+;; Enable color for *compilation* buffer
+(slaughter-package-install 'ansi-color)
+;;emacs 28.1 ;;(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+
+
+(setq coreform-root-default (concat (getenv "HOME") "/cf/master/cf"))
+
+(defun coreform-get-root ()
+  "Coreform: check for a 'build' file in the version control root or use '~/cf/master/cf'."
+  (if (file-exists-p (concat (vc-root-dir) "/build"))
+      (vc-root-dir)
+    coreform-root-default))
+
+(defun coreform-build (build-type)
+  "Coreform: function for running 'build stage make'."
+  (let ((default-directory (coreform-get-root)))
+    (defvar-local build-command (format "./build stage make build-type=%s" (symbol-name build-type)))
+    (message build-command)
+    (compile build-command)))
+
+(defun coreform-build-debug ()
+  "Coreform: configure and compile in debug mode."
+  (interactive)
+  (coreform-build 'debug))
+
+(defun coreform-build-release ()
+  "Coreform: configure and compile in release mode."
+  (interactive)
+  (coreform-build 'release))
+
+(defvar coreform-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map "d" 'coreform-build-debug)
+    (define-key map "r" 'coreform-build-release)
+    map)
+  "Coreform: key map for Coreform utilities.")
+(local-set-key (kbd "C-f") coreform-map)
+

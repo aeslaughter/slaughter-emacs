@@ -1,3 +1,0 @@
-[submodule "emacs-application-framework"]
-	path = contrib/emacs-application-framework
-	url = https://github.com/emacs-eaf/emacs-application-framework.git

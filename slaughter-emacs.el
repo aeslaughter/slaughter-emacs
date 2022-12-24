@@ -58,6 +58,8 @@
 
 (load-file (concat this-directory "/modules/slaughter-jump.el"))
 (load-file (concat this-directory "/modules/slaughter-switch-source.el"))
+(load-file (concat this-directory "/modules/slaughter-coreform.el"))
+
 
 ;(load-file (concat this-directory "/modules/slaughter-eaf.el"))
 
