@@ -13,8 +13,8 @@
 (vertico-mode)
 
 (require 'vertico-directory)
-(define-key vertico-map "\C-j" 'vertico-directory-up)
-(define-key vertico-map "\C-l" 'vertico-directory-enter)
+(define-key vertico-map "\C-l" 'vertico-directory-up)
+(define-key vertico-map "\C-j" 'vertico-directory-enter)
 
 
 ;; (define-key vertico-map "\r" #'vertico-directory-enter)
