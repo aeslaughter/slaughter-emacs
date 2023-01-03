@@ -72,33 +72,45 @@
   "Coreform: configure and compile in debug mode."
   (interactive)
   (setq coreform-default-build 'debug)
-  (coreform-build 'debug))
+  (coreform-build 'debug)
+  (coreform-buffer-compilation))
 
 (defun coreform-build-release ()
   "Coreform: configure and compile in release mode."
   (interactive)
   (setq coreform-default-build 'release)
-  (coreform-build 'release))
+  (coreform-build 'release)
+  (coreform-buffer-compilation))
 
 (defun coreform-ninja-debug ()
   "Coreform: execute ninja debug mode."
   (interactive)
   (setq coreform-default-build 'debug)
-  (coreform-ninja 'debug))
+  (coreform-ninja 'debug)
+  (coreform-buffer-compilation))
 
 (defun coreform-ninja-release ()
   "Coreform: execute ninja release mode."
   (interactive)
   (setq coreform-default-build 'release)
-  (coreform-ninja 'release))
+  (coreform-ninja 'release)
+  (coreform-buffer-compilation))
 
 (defun coreform-test (test-name)
   "Coreform: execute a single test directly as a command."
   (interactive
    (list
     (completing-read "Select test: " (coreform-get-test-names coreform-default-build))))
-  (coreform-test-single test-name coreform-default-build))
-  
+  (coreform-test-single test-name coreform-default-build)
+  (coreform-buffer-compilation))
+
+(defun coreform-buffer-compilation ()
+  "Coreform: switch to *compilation* buffer."
+  (interactive)
+  (let ((the-buffer (get-buffer-window "*compilation*")))
+    (if (not (equal the-buffer nil))
+        (select-window the-buffer))))
+
 ;; Create coreform map with prefix C-f
 (define-prefix-command 'coreform-map)
 (global-set-key "\C-f" 'coreform-map)
@@ -108,3 +120,4 @@
 (define-key coreform-map "r" 'coreform-ninja-release)
 (define-key coreform-map "\C-d" 'coreform-build-debug)
 (define-key coreform-map "\C-r" 'coreform-build-release)
+(define-key coreform-map "c"  'coreform-buffer-compilation)

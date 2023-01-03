@@ -65,7 +65,12 @@
 
 ;; TODO: add keybindings.el???
 (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+(global-set-key [C-left] 'windmove-left)          ; move to left window
+(global-set-key [C-right] 'windmove-right)        ; move to right window
+(global-set-key [C-up] 'windmove-up)              ; move to upper window
+(global-set-key [C-down] 'windmove-down)          ; move to lower window
 
+(setq compilation-scroll-output t)
 
 (global-display-line-numbers-mode)
 (setq line-numbers-mode t)
