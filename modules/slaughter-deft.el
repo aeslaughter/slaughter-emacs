@@ -5,7 +5,11 @@
 (setq deft-directory "~/Google Drive/My Drive/notes")
 
 ;; KEYBINDINGS
-(global-set-key (kbd "C-x n") 'deft)
+(define-prefix-command 'deft-map)
+(global-set-key "\C-d" 'deft-map)
+
+(define-key deft-map "d" 'deft)
+(define-key deft-map "n" 'deft-new-file)
 
 
-
+(setq deft-strip-summary-regexp "#\\+TITLE:.*?^(?P<summary>.*)$")

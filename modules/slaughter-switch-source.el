@@ -33,5 +33,9 @@
    (t (message "Did not find match for %s" buffer-file-name))
   ) 
 )
-  
-(global-set-key (kbd "C-c c") (lambda () (interactive) (switch-hpp-cpp)))
+
+(defun switch-header-source ()
+  (interactive)
+  (switch-hpp-cpp))
+
+(global-set-key (kbd "C-c c") 'switch-header-source)

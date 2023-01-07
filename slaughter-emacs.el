@@ -1,4 +1,4 @@
-;;;; Emacs for Andrew E Slaughter
+;;; Emacs for Andrew E Slaughter
 
 (require 'package)
 
@@ -38,10 +38,8 @@
 (load-file (concat this-directory "/modules/slaughter-consult.el"))
 (load-file (concat this-directory "/modules/slaughter-marginalia.el"))
 ;;(load-file (concat this-directory "/modules/slaughter-corfu.el"))
-(load-file (concat this-directory "/modules/slaughter-company.el"))
-
+;;(load-file (concat this-directory "/modules/slaughter-company.el"))
 ;;(load-file (concat this-directory "/modules/slaughter-helm.el"))
-
 ;;(load-file (concat this-directory "/modules/slaughter-ivy.el"))
 
 (load-file (concat this-directory "/modules/slaughter-flycheck.el"))
@@ -59,18 +57,24 @@
 (load-file (concat this-directory "/modules/slaughter-jump.el"))
 (load-file (concat this-directory "/modules/slaughter-switch-source.el"))
 (load-file (concat this-directory "/modules/slaughter-coreform.el"))
+(load-file (concat this-directory "/modules/slaughter-trello.el"))
 
 
 ;(load-file (concat this-directory "/modules/slaughter-eaf.el"))
 
 ;; TODO: add keybindings.el???
-(global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
-(global-set-key [C-left] 'windmove-left)          ; move to left window
-(global-set-key [C-right] 'windmove-right)        ; move to right window
-(global-set-key [C-up] 'windmove-up)              ; move to upper window
-(global-set-key [C-down] 'windmove-down)          ; move to lower window
+(global-set-key "\C-c\C-c" 'comment-or-uncomment-region)
+(global-set-key "\C-h" 'windmove-left) 
+(global-set-key "\C-j" 'windmove-down)   
+(global-set-key "\C-k" 'windmove-up) 
+(global-set-key "\C-l" 'windmove-right)
+
+(setq completion-ignore-case t)
+(setq read-file-name-completion-ignore-case t)
+
 
 (setq compilation-scroll-output t)
+;;(setq compilation-auto-jump-to-first-error t)
 
 (global-display-line-numbers-mode)
 (setq line-numbers-mode t)

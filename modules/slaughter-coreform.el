@@ -46,7 +46,7 @@
 (defun coreform-build (build-type)
   "Coreform: run 'build stage make'."
   (let ((default-directory (coreform-get-root-dir)))
-    (defvar-local build-command (format "./build stage make build-type=%s" (symbol-name build-type)))
+    (defvar-local build-command (format "./build stage make --build-type=%s" (symbol-name build-type)))
     (message "CORFORM::BUILD %s" build-command)
     (compile build-command)))
 
@@ -61,12 +61,29 @@
     (compile ninja-command)))
 
 ;; run a single test
-(defun coreform-test-single (test-name &optional build-type)
+(defun coreform-test-single (test-name build-type)
   "Coreform: run an individual test"
-  (unless build-type (setq build-type coreform-default-build))
   (let ((default-directory (coreform-get-binary-dir build-type)))
     (message "COREFORM::TEST %s" (expand-file-name default-directory test-name))
     (compile (format "./%s" test-name))))
+
+;; run a single test
+(defun coreform-run-ctest (build-type &optional regex)
+  "Coreform: run ctest with optional regex"
+  (if regex
+      (defvar-local ctest-command (format "ctest -C %s --tests-regex %s" build-type regex))
+    (defvar-local ctest-command (format "ctest -C %s" build-type)))
+  (let ((default-directory (coreform-get-build-dir)))
+    (message "COREFORM::CTEST %s" ctest-command)
+    (compile ctest-command)))
+
+;; build stage test
+(defun coreform-build-test (build-type)
+  "Coreform: run 'build stage test'."
+  (let ((default-directory (coreform-get-root-dir)))
+    (defvar-local test-command (format "./build stage test --skip-cmake --skip-build --build-type=%s" (symbol-name build-type)))
+    (message "CORFORM::TEST %s" test-command)
+    (compile test-command)))
 
 (defun coreform-build-debug ()
   "Coreform: configure and compile in debug mode."
@@ -104,6 +121,13 @@
   (coreform-test-single test-name coreform-default-build)
   (coreform-buffer-compilation))
 
+(defun coreform-ctest (test-name)
+  (interactive
+   (list
+    (completing-read "Select test: " (coreform-get-test-names coreform-default-build))))  
+  (coreform-run-ctest coreform-default-build test-name)
+  (coreform-buffer-compilation))
+
 (defun coreform-buffer-compilation ()
   "Coreform: switch to *compilation* buffer."
   (interactive)
@@ -116,8 +140,9 @@
 (global-set-key "\C-f" 'coreform-map)
 
 (define-key coreform-map "t" 'coreform-test)
+(define-key coreform-map "c" 'coreform-ctest)
 (define-key coreform-map "d" 'coreform-ninja-debug)
 (define-key coreform-map "r" 'coreform-ninja-release)
 (define-key coreform-map "\C-d" 'coreform-build-debug)
 (define-key coreform-map "\C-r" 'coreform-build-release)
-(define-key coreform-map "c"  'coreform-buffer-compilation)
+(define-key coreform-map "b"  'coreform-buffer-compilation)
