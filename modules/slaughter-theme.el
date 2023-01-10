@@ -4,6 +4,10 @@
 (slaughter-package-install 'doom-themes)
 (load-theme 'doom-horizon t)
 
+(global-linum-mode 1)
+(setq linum-format "%4d \u2502 ")
+
+
 ;;(slaughter-package-install 'seti-theme)
 ;;(load-theme 'seti t)
 ;; Font

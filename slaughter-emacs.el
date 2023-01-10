@@ -71,14 +71,9 @@
 
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
-
-
 (setq compilation-scroll-output t)
 ;;(setq compilation-auto-jump-to-first-error t)
 
-(global-display-line-numbers-mode)
-(setq line-numbers-mode t)
-(set-face-foreground 'line-number "#444")
 
 (setq require-final-newline t)
 
