@@ -20,7 +20,7 @@
 
 (defun coreform-build--make-f ()
   "COREFORM-BUILD: run 'build stage make' using the current build type."
-  (let ((default-directory (coreform-get-root-dir))
+  (let ((default-directory (coreform--get-root-dir-f))
         (build-command (format "./build stage make --build-type=%s" (symbol-name coreform-build--type-v))))
     (message "coreform-build: %s" build-command)
     (compile build-command)))
