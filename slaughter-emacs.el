@@ -30,37 +30,28 @@
 
 ;;(defvar-local this-directory (file-name-directory load-file-name))
 
-(defvar-local this-directory "~/slaughter-emacs")
-(load-file (concat this-directory "/modules/slaughter-theme.el"))
-(load-file (concat this-directory "/modules/slaughter-projectile.el"))
-(load-file (concat this-directory "/modules/slaughter-vertico.el"))
-(load-file (concat this-directory "/modules/slaughter-orderless.el"))
-(load-file (concat this-directory "/modules/slaughter-consult.el"))
-(load-file (concat this-directory "/modules/slaughter-marginalia.el"))
-;;(load-file (concat this-directory "/modules/slaughter-corfu.el"))
-;;(load-file (concat this-directory "/modules/slaughter-company.el"))
-;;(load-file (concat this-directory "/modules/slaughter-helm.el"))
-;;(load-file (concat this-directory "/modules/slaughter-ivy.el"))
-
-(load-file (concat this-directory "/modules/slaughter-flycheck.el"))
-(load-file (concat this-directory "/modules/slaughter-undo.el"))
-(load-file (concat this-directory "/modules/slaughter-expand-region.el"))
-;(load-file (concat this-directory "/modules/slaughter-easy-kill.el"))
-(load-file (concat this-directory "/modules/slaughter-multiple-cursors.el"))
-(load-file (concat this-directory "/modules/slaughter-smartparens.el"))
-(load-file (concat this-directory "/modules/slaughter-deft.el"))
-(load-file (concat this-directory "/modules/slaughter-magit.el"))
-
-(load-file (concat this-directory "/modules/slaughter-languages.el")) ;; TODO: add scribble
-(load-file (concat this-directory "/modules/slaughter-backup.el"))
-
-(load-file (concat this-directory "/modules/slaughter-jump.el"))
-(load-file (concat this-directory "/modules/slaughter-switch-source.el"))
-(load-file (concat this-directory "/modules/slaughter-coreform.el"))
-(load-file (concat this-directory "/modules/slaughter-trello.el"))
-
-
-;(load-file (concat this-directory "/modules/slaughter-eaf.el"))
+(defvar this-directory "~/slaughter-emacs")
+(defvar modules-directory "~/slaughter-emacs/modules")
+(let ((default-directory modules-directory))
+  (load-file "slaughter-theme.el")
+  (load-file "slaughter-projectile.el")
+  (load-file "slaughter-vertico.el")
+  (load-file "slaughter-orderless.el")
+  (load-file "slaughter-consult.el")
+  (load-file "slaughter-marginalia.el")  
+  (load-file "slaughter-flycheck.el")
+  (load-file "slaughter-undo.el")
+  (load-file "slaughter-expand-region.el")
+  (load-file "slaughter-multiple-cursors.el")
+  (load-file "slaughter-smartparens.el")
+  (load-file "slaughter-deft.el")
+  (load-file "slaughter-magit.el") 
+  (load-file "slaughter-languages.el")
+  (load-file "slaughter-backup.el")  
+  (load-file "slaughter-jump.el")
+  (load-file "slaughter-switch-source.el")
+  (load-file "slaughter-coreform.el")
+  (load-file "slaughter-trello.el"))
 
 ;; TODO: add keybindings.el???
 (global-set-key "\C-c\C-c" 'comment-or-uncomment-region)
@@ -71,6 +62,7 @@
 
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
+(setq read-buffer-completion-ignore-case t)
 (setq compilation-scroll-output t)
 ;;(setq compilation-auto-jump-to-first-error t)
 
@@ -91,7 +83,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(vertico vterm-toggle vterm multi-term h5dump-mode helm-xref ivy-xref ivy-lsp flycheck-aspell lsp-ivy lsp-treemacs lsp-ui lsp-mode dumb-jump tide flyspell-correct-popup cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
+   '(golden-ratio vertico vterm-toggle vterm multi-term h5dump-mode helm-xref ivy-xref ivy-lsp flycheck-aspell lsp-ivy lsp-treemacs lsp-ui lsp-mode dumb-jump tide flyspell-correct-popup cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
