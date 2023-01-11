@@ -36,13 +36,13 @@
 ;(require 'flycheck-vale)
 ;(flycheck-vale-setup)
 
-(flycheck-define-checker vale
-  "A checker for prose"
-  :command ("vale" "--output" "line"
-            source)
-  :standard-input nil
-  :error-patterns
-  ((error line-start (file-name) ":" line ":" column ":" (id (one-or-more (not (any ":")))) ":" (message) line-end))
-  :modes (markdown-mode org-mode text-mode)
-  )
-(add-to-list 'flycheck-checkers 'vale 'append)
+;; (flycheck-define-checker vale
+;;   "A checker for prose"
+;;   :command ("vale" "--output" "line"
+;;             source)
+;;   :standard-input nil
+;;   :error-patterns
+;;   ((error line-start (file-name) ":" line ":" column ":" (id (one-or-more (not (any ":")))) ":" (message) line-end))
+;;   :modes (markdown-mode org-mode text-mode)
+;;   )
+;;(add-to-list 'flycheck-checkers 'vale 'append)

@@ -21,7 +21,8 @@
     (with-current-buffer buffer-name
       (compilation-mode)
       (read-only-mode))
-    (switch-to-buffer-other-frame buffer-name)))
+    (unless (get-buffer-window buffer-name 'visible)
+      (switch-to-buffer-other-window buffer-name))))
 
 (defun coreform-webpack--kill (process-name)
   "COREFORM-WEBPACK: kill running webpack PROCESS_NAME"
@@ -48,6 +49,16 @@
   "COREFORM-WEBPACK: kill the  webpack in the flex directory."
   (interactive)
   (coreform-webpack--kill  "coreform-webpack-flex"))
+
+(defun coreform-webpack-cae ()
+  "COREFORM-WEBPACK: run webpack in the cae directory."
+  (interactive)
+  (coreform-webpack-compile "/cf_cae" "coreform-webpack-cae"))
+
+(defun coreform-webpack-cae-kill ()
+  "COREFORM-WEBPACK: kill the  webpack in the cae directory."
+  (interactive)
+  (coreform-webpack--kill  "coreform-webpack-cae"))
 
 (defun coreform-set-webpack-mode-development ()
   "COREFORM-WEBPACK: set the webpack mode to development."

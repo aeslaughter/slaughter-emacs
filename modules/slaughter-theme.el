@@ -9,6 +9,12 @@
 (setq linum-format "%4d \u2502 ")
 
 
-(slaughter-package-install 'golden-ratio)
-(require 'golden-ratio)
-(golden-ratio-mode 1)
+(slaughter-package-install 'zoom)
+(require 'zoom)
+(zoom-mode t)
+(setq zoom-size '(0.5 . 0.5))
+(temp-buffer-resize-mode t)
+
+
+;; (slaughter-package-install 'auto-dim-other-buffers)
+;; (auto-dim-other-buffers-mode f)

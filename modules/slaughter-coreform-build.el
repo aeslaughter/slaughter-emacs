@@ -53,14 +53,14 @@
   "COREFORM-BUILD: build with ninja in debug mode."
   (interactive)
   (setq coreform-build--type-v 'debug)
-  (coreform--build-ninja-f)
+  (coreform-build--ninja-f)
   (coreform-buffer-compilation))
 
 (defun coreform-build-ninja-release ()
   "COREFORM-BUILD: build with ninja in release mode."
   (interactive)
   (setq coreform-build--type-v 'release)
-  (coreform--build-ninja-f)
+  (coreform-build--ninja-f)
   (coreform-buffer-compilation))
 
 (defun coreform-build-set-type-debug ()

@@ -22,10 +22,9 @@
 
 (defun slaughter-package-load (pkg-name &optional pkg-folder)
   (unless pkg-folder (setq pkg-folder pkg-name))
-  (defvar-local pkg-path (expand-file-name (concat contrib-dir "/" pkg-folder)))
-  (message "Adding '%s' to load-path" pkg-path)
-  (add-to-list 'load-path pkg-path) 
-  )
+  (let ((defvar-local pkg-path (expand-file-name (concat contrib-dir "/" pkg-folder))))
+    (message "Adding '%s' to load-path" pkg-path)
+    (add-to-list 'load-path pkg-path)))
 
 
 ;;(defvar-local this-directory (file-name-directory load-file-name))
@@ -83,12 +82,13 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(package-selected-packages
-   '(golden-ratio vertico vterm-toggle vterm multi-term h5dump-mode helm-xref ivy-xref ivy-lsp flycheck-aspell lsp-ivy lsp-treemacs lsp-ui lsp-mode dumb-jump tide flyspell-correct-popup cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
+   '(auto-dim-other-buffers golden-ratio vertico vterm-toggle vterm multi-term h5dump-mode helm-xref ivy-xref ivy-lsp flycheck-aspell lsp-ivy lsp-treemacs lsp-ui lsp-mode dumb-jump tide flyspell-correct-popup cmake-mode undo-tree typescript-mode swiper-helm smartparens seti-theme scribble-mode racket-mode projectile-ripgrep multiple-cursors markdown-mode magit highlight-parentheses helm-swoop helm-projectile helm-flycheck helm-company flyspell-correct-ivy flyspell-correct-helm expand-region easy-kill deft counsel-projectile browse-kill-ring)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-dim-other-buffers-face ((t (:background "color-233"))))
  '(helm-swoop-target-line-block-face ((t (:background "color-17"))))
  '(helm-swoop-target-line-face ((t (:background "color-22"))))
  '(helm-swoop-target-word-face ((t (:background "color-52")))))
