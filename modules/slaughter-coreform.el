@@ -1,7 +1,7 @@
 ;;; slaughter-coreform-build --- Utilities for development at Coreform
 ;;; Commentary:
-(setq debug-on-error t)
 
+;;; Code:
 ;; Enable color for *compilation* buffer
 (slaughter-package-install 'ansi-color)
 ;;emacs 28.1 ;;(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
@@ -13,7 +13,6 @@
   (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
 (setq coreform--root-dir-v (concat (getenv "HOME") "/cf/master/cf"))
-
 
 (defun coreform--get-root-dir-f ()
   "COREFORM: check for a 'build' file in the version control root or use '~/cf/master/cf'."
@@ -49,67 +48,12 @@
   (message "Set coreform directory to  %s." directory)
   (setq coreform--root-dir directory))
 
-
-
-(setq coreform-webpack-mode 'development)
-(setq coreform-webpack-watch t)
-
-
-
-(defun coreform-webpack (location process-name)
-  "Coreform: run 'webpack' (from the root) from the given location" 
-  (setq-local webpack-command (format "%s/node_modules/.bin/webpack" (coreform-get-root-dir)))
-  (let ((default-directory (concat (coreform-get-root-dir) location)))
-    (setq buffer-name (format "*%s*" process-name))
-    (unless (get-buffer buffer-name)
-      (with-current-buffer buffer-name
-        (erase-buffer)))
-    (start-process process-name buffer-name webpack-command (format "--mode=%s" (symbol-name coreform-webpack-mode)) (if coreform-webpack-watch "--watch" "--no-watch"))
-    (coreform-select-buffer-window buffer-name)))
-    ;; (with-current-buffer buffer-name
-    ;;   (setq-local major-mode 'compilation-mode)
-    ;;   (setq-local buffer-read-only t))))
-
-(defun coreform-webpack-compile (location process-name)
-  "Coreform: run 'webpack' in a process, prompting to kill if it is already running"
-  (interactive)
-  (when (equal (process-status process-name) 'run)
-    (y-or-n-p (format "A webpack process '%s' is running, kill it? " process-name)
-              (delete-process process-name) nil))
-  (unless (equal (process-status process-name) 'run)
-    (coreform-webpack location process-name)))
-
-(defun coreform-webpack-flex ()
-  "Coreform: run webpack in the flex directory"
-  (interactive)
-  (coreform-webpack-compile "/flex" "coreform-webpack-flex"))
-
-(defun coreform-set-webpack-mode-development ()
-  "Coreform: set the webpack mode to development"
-  (interactive)
-  (setq coreform-webpack-mode 'development))
-
-(defun coreform-set-webpack-mode-release ()
-  "Coreform: set the webpack mode to development"
-  (interactive)
-  (setq coreform-webpack-mode 'release))
-
-(defun coreform-webpack-toggle-watch ()
-  "Coreform: toggle the webpack watch flag"
-  (interactive)
-  (setq coreform-webpack-watch (not coreform-webpack-watch))
-  (message "COREFORM:: watch mode is %s" (if coreform-webpack-watch "on" "off")))
-
-
-
-(defun coreform-kill-webpack ()
-  "Coreform: kill running webpack process"
-  (interactive))
-
-
+;;; Sub-packages:
 (load-file "slaughter-coreform-build.el")
 (load-file "slaughter-coreform-test.el")
+(load-file "slaughter-coreform-webpack.el")
 
+;;; Keybindings:
 (define-prefix-command 'coreform-map)
 (global-set-key "\C-f" 'coreform-map)
 
