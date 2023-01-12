@@ -75,7 +75,7 @@
 (defun coreform-test-keep-sim-artificats-off ()
   "COREFORM-TEST: disable KEEP_SIM_TEST_ARTIFACTS environment variable."
   (interactive)
-  (setq coreform-test--keep-artifacts-flag f))
+  (setq coreform-test--keep-artifacts-flag nil))
 
 
 (provide 'slaughter-coreform-test)

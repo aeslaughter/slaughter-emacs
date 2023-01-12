@@ -51,8 +51,10 @@
 ;;; Sub-packages:
 (let ((default-directory modules-directory))
   (load-file "slaughter-coreform-build.el")
+  (load-file "slaughter-coreform-process.el")
   (load-file "slaughter-coreform-test.el")
-  (load-file "slaughter-coreform-webpack.el"))
+  (load-file "slaughter-coreform-webpack.el")
+  (load-file "slaughter-coreform-webserver.el"))
 
 ;;; Keybindings:
 (define-prefix-command 'coreform-map)
