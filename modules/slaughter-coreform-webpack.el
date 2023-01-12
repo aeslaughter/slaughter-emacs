@@ -5,9 +5,9 @@
 (require 'slaughter-coreform-process)
 
 (defvar coreform-webpack--mode-v 'development
-  "COREFROM_TEST: Webpack development mode, should be set to 'development or 'release.")
+  "COREFROM-WEBPACK: Webpack development mode, should be set to 'development or 'release.")
 (defvar coreform-webpack--watch-flag t
-  "COREFROM_TEST: Stores state for using --watch flag on webpack.")
+  "COREFROM-WEBPACK: Stores state for using --watch flag on webpack.")
 
 (defun coreform-webpack--run (location process-name)
   "COREFORM-WEBPACK: run 'webpack' as a process with name PROCESS-NAME from the given LOCATION." 

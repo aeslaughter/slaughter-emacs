@@ -3,11 +3,11 @@
 ;;; Code:
 (require 'slaughter-coreform-process)
 
-(defvar coreform-webserver--port-flex 61950
-  "COREFORM_TEST: default port number for flex webserver.")
+(defvar coreform-webserver--port-flex-v 61950
+  "COREFORM-WEBSERVER: default port number for flex webserver.")
 
-(defvar coreform-webserver--port-cae 61980
-  "COREFORM_TEST: default port number for cf_cae webserver.")
+(defvar coreform-webserver--port-cae-v 61980
+  "COREFORM-WEBSERVER: default port number for cf_cae webserver.")
 
 (defun coreform-webserver--run (location port process-name)
   "COREFORM-WEBPACK: run a python webserver with PORT as a process with name PROCESS-NAME from the given LOCATION,\
@@ -21,7 +21,7 @@
 (defun coreform-webserver-flex ()
   "COREFORM-WEBSERVER: run webserver in the flex directory."
   (interactive)
-  (coreform-webserver--run "/flex" coreform-webserver--port-flex "coreform-webserver-flex"))
+  (coreform-webserver--run "/flex" coreform-webserver--port-flex-v "coreform-webserver-flex"))
 
 (defun coreform-webserver-flex-kill ()
   "COREFORM-WEBSERVER: kill the  webserver in the flex directory."
@@ -41,11 +41,11 @@
 (defun coreform-webserver-set-flex-port (port)
   "COREFORM-WEBSERVER: set the port for the flex webserver."
   (interactive (fornat "pSet port (current: %s, must be < 65535): " coreform-webserver--flex-cae))
-  (setq coreform-webserver--port-flex port))
+  (setq coreform-webserver--port-flex-v port))
 
 (defun coreform-webserver-set-cae-port (port)
   "COREFORM-WEBSERVER: set the port for the cae webserver."
-  (interactive (fornat "pSet port (current: %s, must be < 65535): " coreform-webserver--port-cae))
-  (setq coreform-webserver--port-cae port))
+  (interactive (fornat "pSet port (current: %s, must be < 65535): " coreform-webserver--port-cae-v))
+  (setq coreform-webserver--port-cae-v port))
 
 (provide 'slaughter-coreform-webserver)

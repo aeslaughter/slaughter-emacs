@@ -54,7 +54,8 @@
   (load-file "slaughter-coreform-process.el")
   (load-file "slaughter-coreform-test.el")
   (load-file "slaughter-coreform-webpack.el")
-  (load-file "slaughter-coreform-webserver.el"))
+  (load-file "slaughter-coreform-webserver.el")
+  (load-file "slaughter-coreform-workspace.el"))
 
 ;;; Keybindings:
 (define-prefix-command 'coreform-map)
