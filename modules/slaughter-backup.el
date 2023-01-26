@@ -13,4 +13,5 @@ If the new path's directories does not exist, create them."
   )
 )
 
+(auto-save-mode nil)
 (setq make-backup-file-name-function 'my-backup-file-name)

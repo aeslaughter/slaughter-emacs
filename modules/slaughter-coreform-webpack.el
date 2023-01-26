@@ -12,7 +12,7 @@
 (defun coreform-webpack--run (location process-name)
   "COREFORM-WEBPACK: run 'webpack' as a process with name PROCESS-NAME from the given LOCATION." 
   (let ((the-command (format "%s/node_modules/.bin/webpack" coreform--root-dir-v ))
-        (the-args (list (format "--mode=%s" (symbol-name coreform-webpack--mode-v)) (if coreform-webpack--watch-flag "--watch" "--no-watch"))))
+        (the-args (list (format "--mode=%s" (symbol-name coreform-webpack--mode-v)) (if coreform-webpack--watch-flag "--watch" "--no-watch")))) ;; --color
     (apply 'coreform-process--run location process-name the-command the-args)))
 
 ;; Interactive commands

@@ -4,7 +4,7 @@
 (require 'slaughter-coreform-build)
 (require 'slaughter-coreform-process)
 
-(defvar coreform-workspace--port-v 61951
+(defvar coreform-workspace--port-v 61954
   "COREFORM-WORKSPACE: default port number for flex workspace.")
 
 (defun coreform-workspace--run (location process-name)

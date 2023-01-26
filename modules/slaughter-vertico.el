@@ -7,5 +7,7 @@
 (vertico-mode)
 
 (require 'vertico-directory)
-(define-key vertico-map "\C-k" 'vertico-directory-up)
-(define-key vertico-map "\C-j" 'vertico-directory-enter)
+(define-key vertico-map "\C-h" 'vertico-directory-up)
+(define-key vertico-map "\C-k" 'vertico-previous)
+(define-key vertico-map "\C-j" 'vertico-next)
+(define-key vertico-map "\C-l" 'vertico-directory-enter)

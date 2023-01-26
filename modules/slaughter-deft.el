@@ -19,7 +19,7 @@
   (string-match "\n\\(.*\\)\n.*" contents)
   (match-string 1 contents))
 
-(defvar deft-window-offset 1
+(defvar deft-window-offset 20
   "Offset width applied to Deft buffer window width.")
 
 (defun deft-current-window-width ()

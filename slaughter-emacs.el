@@ -26,6 +26,12 @@
     (message "Adding '%s' to load-path" pkg-path)
     (add-to-list 'load-path pkg-path)))
 
+(defun slaughter-help (prefix)
+  "SLAUGHTER: show all <prefix>... commands"
+  (minibuffer-with-setup-hook
+      (lambda ()
+        (insert prefix))
+    (call-interactively #'execute-extended-command)))
 
 ;;(defvar-local this-directory (file-name-directory load-file-name))
 
@@ -47,17 +53,19 @@
   (load-file "slaughter-magit.el") 
   (load-file "slaughter-languages.el")
   (load-file "slaughter-backup.el")  
-  (load-file "slaughter-jump.el")
   (load-file "slaughter-switch-source.el")
   (load-file "slaughter-coreform.el")
   (load-file "slaughter-trello.el"))
 
 ;; TODO: add keybindings.el???
-(global-set-key "\C-c\C-c" 'comment-or-uncomment-region)
+(global-set-key "\C-c\C-u" 'comment-or-uncomment-region)
 (global-set-key "\C-h" 'windmove-left) 
 (global-set-key "\C-j" 'windmove-down)   
 (global-set-key "\C-k" 'windmove-up) 
 (global-set-key "\C-l" 'windmove-right)
+
+(global-set-key "\M-9" 'backward-sexp)
+(global-set-key "\M-0" 'forward-sexp)
 
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
@@ -97,8 +105,9 @@
 (put 'upcase-region 'disabled nil)
 
 ;; whitespace and tabs
-(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode t)
 (setq-default delete-trailing-lines t)
 (setq default-tab-width 4)
 
 
+(put 'erase-buffer 'disabled nil)

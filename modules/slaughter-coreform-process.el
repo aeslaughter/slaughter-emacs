@@ -7,7 +7,7 @@
   "COREFORM-PROCESS: run a COMMAND with ARGS as a process with name PROCESS-NAME from the given a LOCATION in the repository,"
   (interactive)
   (when (equal (process-status process-name) 'run)
-    (when (yes-or-no-p (format "A webserver process '%s' is running, kill it? " process-name))
+    (when (y-or-n-p (format "A webserver process '%s' is running, kill it? " process-name))
       (delete-process process-name)))
   (unless (equal (process-status process-name) 'run)
     (let ((default-directory (concat coreform--root-dir-v location))
@@ -16,7 +16,7 @@
         (with-current-buffer buffer-name
           (read-only-mode -1)
           (erase-buffer)))
-      (message "COREFORM-PROCESS: %s %s" command (string-join args))
+      (message "COREFORM-PROCESS: %s %s" command (string-join args " "))
       (apply 'start-process process-name buffer-name command args)
       (with-current-buffer buffer-name
         (compilation-mode)

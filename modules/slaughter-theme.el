@@ -11,9 +11,9 @@
 
 (slaughter-package-install 'zoom)
 (require 'zoom)
-(zoom-mode t)
-(setq zoom-size '(0.5 . 0.5))
-(temp-buffer-resize-mode t)
+(zoom-mode nil)
+;; (setq zoom-size '(0.5 . 0.5))
+;; (temp-buffer-resize-mode t)
 
 
 ;; (slaughter-package-install 'auto-dim-other-buffers)
