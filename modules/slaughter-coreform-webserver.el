@@ -45,7 +45,7 @@
 
 (defun coreform-webserver-set-cae-port (port)
   "COREFORM-WEBSERVER: set the port for the cae webserver."
-  (interactive (fornat "pSet port (current: %s, must be < 65535): " coreform-webserver--port-cae-v))
+  (interactive (format "pSet port (current: %s, must be < 65535): " coreform-webserver--port-cae-v))
   (setq coreform-webserver--port-cae-v port))
 
 (provide 'slaughter-coreform-webserver)
