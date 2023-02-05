@@ -24,6 +24,12 @@
   (interactive)
   (coreform-process--kill  "coreform-workspace-flex"))
 
+(defun coreform-workspace-flex-restart ()
+  "COREFORM-WORKSPACE: stop and restart workspace in the flex directory."
+  (interactive)
+  (coreform-workspace-flex-kill)
+  (coreform-workspace-flex))
+
 (defun coreform-webserver-set-workspace-port (port)
   "COREFORM-WORKSPACE: set the port for the cae webserver."
   (interactive (fornat "pSet port (current: %s, must be < 65535): " coreform-webserver--port-v))

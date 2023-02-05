@@ -21,6 +21,12 @@
   (interactive)
   (coreform-webpack--run "/flex" "coreform-webpack-flex"))
 
+(defun coreform-webpack-flex-restart ()
+  "COREFORM-WEBPACK: stop and restart webpack in the flex directory."
+  (interactive)
+  (coreform-webpack-flex-kill)
+  (coreform-webpack-flex))
+
 (defun coreform-webpack-flex-kill ()
   "COREFORM-WEBPACK: kill the  webpack in the flex directory."
   (interactive)

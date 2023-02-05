@@ -28,6 +28,12 @@
   (interactive)
   (coreform-process--kill "coreform-webserver-flex"))
 
+(defun coreform-webserver-flex-restart ()
+  "COREFORM-WEBSERVER: stop and restart webserver in the flex directory."
+  (interactive)
+  (coreform-webserver-flex-kill)
+  (coreform-webserver-flex))
+
 (defun coreform-webserver-cae ()
   "COREFORM-WEBSERVER: run webserver in the cae directory."
   (interactive)

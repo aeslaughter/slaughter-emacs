@@ -49,11 +49,6 @@
   (interactive)
   (slaughter-help "coreform-"))
 
-(defun coreform-buffer-compilation ()
-  "COREFORM: switch to *compilation* buffer."
-  (interactive)
-  (coreform--select-buffer-window-f "*compilation*"))
-
 (defun coreform-set-root-dir (directory)
   "COREFORM: set the root DIRECTORY to the 'cf' repository."
   (interactive (list (read-directory-name "Select coreform repository root directory? " 
@@ -61,18 +56,12 @@
   (message "Set coreform directory to  %s." directory)
   (setq coreform--root-dir directory))
 
-(defun coreform-buffer-webpack ()
-  "COREFORM: switch to *coreform-webpack-flex buffer."
+(defun coreform-dev-flex ()
   (interactive)
-  (coreform--select-buffer-window-f "*coreform-webpack-flex*"))
-
-(defun coreform-setup-flex-dev ()
-  (interactive)
-  (coreform-webpack-flex)
-  (coreform-webserver-flex)
-  (coreform--delete-buffer-window-f "*coreform-webserver-flex*")
-  (coreform-workspace-flex)
-  (coreform--delete-buffer-window-f "*coreform-workspace-flex*"))
+  (coreform-build)
+  (coreform-workspace-flex-restart)
+  (coreform-webpack-flex-restart)
+  (coreform-webserver-flex-restart))
 
 ;;; Keybindings:
 (define-prefix-command 'coreform-map)
@@ -89,10 +78,12 @@
 (define-key coreform-map "r" 'coreform-build-ninja-release)
 (define-key coreform-map "\C-r" 'coreform-build-release)
 
-(define-key coreform-map "w" 'coreform-buffer-webpack)
+(define-key coreform-map "1" 'coreform-dev-flex)
+(define-key coreform-map "2" 'coreform-webpack-flex-restart)
+(define-key coreform-map "3" 'coreform-workspace-flex-restart)
+(define-key coreform-map "4" 'coreform-webserver-flex-restart)
 
 
-(define-key coreform-map "b" 'coreform-buffer-compilation)
 
 (setq-default tab-width 4)
 

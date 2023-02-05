@@ -35,6 +35,12 @@
     (compile ninja-command)))
 
 ;;; Interactive commands:
+(defun coreform-build ()
+  "COREFORM_BUILD: configure and compile in debug mode."
+  (interactive)
+  (coreform-build--make-f)
+  (coreform-buffer-compilation))
+
 (defun coreform-build-debug ()
   "COREFORM_BUILD: configure and compile in debug mode."
   (interactive)

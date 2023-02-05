@@ -22,7 +22,8 @@
         (compilation-mode)
         (read-only-mode))
       (unless (get-buffer-window buffer-name 'visible)
-        (switch-to-buffer-other-window buffer-name)))))
+		(switch-to-buffer-other-window buffer-name)
+		))))
 
 (defun coreform-process--kill (process-name)
   "COREFORM-PROCESS: kill running webpack PROCESS-NAME"
