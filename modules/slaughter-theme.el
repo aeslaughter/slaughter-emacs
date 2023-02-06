@@ -2,8 +2,8 @@
 
 
 (slaughter-package-install 'doom-themes)
-(load-theme 'doom-vibrant t)
-;;(load-theme 'doom-material t)
+(load-theme 'doom-material t)
+;;(load-theme 'doom-vibrant t)
 ;;(load-theme 'doom-horizon t)
 ;;(load-theme 'doom-nord)
 

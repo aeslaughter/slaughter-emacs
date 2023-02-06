@@ -10,6 +10,7 @@
       '("\\*Messages\\*"
         "Output\\*$"
         "\\*Async Shell Command\\*"
+		"\\*rg\\*"
         help-mode
         compilation-mode))
 
