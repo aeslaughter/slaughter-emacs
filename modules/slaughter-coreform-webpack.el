@@ -12,10 +12,18 @@
 (defun coreform-webpack--run (location process-name)
   "COREFORM-WEBPACK: run 'webpack' as a process with name PROCESS-NAME from the given LOCATION." 
   (let ((the-command (format "%s/node_modules/.bin/webpack" coreform--root-dir-v ))
-        (the-args (list (format "--mode=%s" (symbol-name coreform-webpack--mode-v)) (if coreform-webpack--watch-flag "--watch" "--no-watch")  "--color")))
+        (the-args (list (format "--mode=%s" (symbol-name coreform-webpack--mode-v)) (if coreform-webpack--watch-flag "--watch" "--no-watch"))))
     (apply 'coreform-process--run location process-name the-command the-args)))
 
 (add-to-list 'compilation-error-regexp-alist '(".*ERROR\\ *in\\ *\\(.*\\..*\\)(\\([0-9]+\\),\\([0-9]+\\))$" 1 2 3))
+
+(defun coreform-webpack--window-active (&rest _)
+  "COREFORM-WEBPACK: reparse the webpack buffer"
+  (message (buffer-name))
+  (when (string= (buffer-name) "*coreform-webpack-flex*")
+	(compilation-reparse-buffer)))
+
+(add-hook 'window-selection-change-functions #'coreform-webpack--window-active)
 
 ;; Interactive commands
 (defun coreform-webpack-flex ()

@@ -33,4 +33,10 @@
   (when (equal (process-status process-name) 'run)
     (delete-process process-name)))
 
+(defun compilation-reparse-buffer (&rest _ignored)
+  "COREFORM-PROCESS: reparse the compilation buffer, https://emacs.stackexchange.com/a/31223/36344"
+  (interactive)
+  (compilation--flush-parse (point-min) (point-max))
+  (compilation--ensure-parse (point-max)))
+
 (provide 'slaughter-coreform-process)
