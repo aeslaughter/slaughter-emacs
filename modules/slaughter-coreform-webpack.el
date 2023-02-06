@@ -15,6 +15,8 @@
         (the-args (list (format "--mode=%s" (symbol-name coreform-webpack--mode-v)) (if coreform-webpack--watch-flag "--watch" "--no-watch" "--color"))))
     (apply 'coreform-process--run location process-name the-command the-args)))
 
+(add-to-list 'compilation-error-regexp-alist '(".*ERROR\\ *in\\ *\\(.*\\..*\\)(\\([0-9]+\\),\\([0-9]+\\))$" 1 2 3))
+
 ;; Interactive commands
 (defun coreform-webpack-flex ()
   "COREFORM-WEBPACK: run webpack in the flex directory."

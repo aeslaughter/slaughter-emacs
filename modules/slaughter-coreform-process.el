@@ -20,7 +20,9 @@
       (apply 'start-process process-name buffer-name command args)
       (with-current-buffer buffer-name
         (compilation-mode)
-        (read-only-mode))
+        (read-only-mode)
+		(setq-local compilation-scroll-output +1)
+		(linum-mode nil))
       (unless (get-buffer-window buffer-name 'visible)
 		(switch-to-buffer-other-window buffer-name)
 		))))
