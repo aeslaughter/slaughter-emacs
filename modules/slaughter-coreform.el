@@ -74,6 +74,7 @@
 
 (define-key coreform-map "d" 'coreform-build-ninja-debug)
 (define-key coreform-map "\C-d" 'coreform-build-debug)
+(define-key coreform-map "g" 'coreform-build-code-generation)
 
 (define-key coreform-map "r" 'coreform-build-ninja-release)
 (define-key coreform-map "\C-r" 'coreform-build-release)

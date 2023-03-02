@@ -107,7 +107,7 @@
 (put 'upcase-region 'disabled nil)
 
 ;; whitespace and tabs
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq-default delete-trailing-lines t)
 (setq default-tab-width 4)
 

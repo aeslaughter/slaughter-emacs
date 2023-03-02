@@ -15,3 +15,5 @@ If the new path's directories does not exist, create them."
 
 (auto-save-mode nil)
 (setq make-backup-file-name-function 'my-backup-file-name)
+
+(setq auto-save-list-file-prefix "~/.emacs-auto-save")

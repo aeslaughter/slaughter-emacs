@@ -25,6 +25,13 @@
     (message "coreform-build: %s" build-command)
     (compile build-command)))
 
+(defun coreform-build--code-f ()
+  "COREFORM-BUILD: run 'build stage code-generation' using the current build type."
+  (let ((default-directory (coreform--get-root-dir-f))
+        (build-command (format "./build stage code-generation")))
+    (message "coreform-build: %s" build-command)
+    (compile build-command)))
+
 (defun coreform-build--ninja-f ()
   "COREFORM-BUILD: run ninja using the current build type."
   (let ((default-directory (coreform-build--get-dir-f))
@@ -79,5 +86,10 @@
   (interactive)
   (setq coreform-build--type-v 'release))
 
+(defun coreform-build-code-generation ()
+  "COREFORM-BUILD: build with ninja in debug mode."
+  (interactive)
+  (coreform-build--code-f)
+  (coreform-buffer-compilation))
 
 (provide 'slaughter-coreform-build)

@@ -45,7 +45,7 @@
   :dir current)
 
 (define-prefix-command 'rg-map)
-(global-set-key "\M-s" 'rg-map)
+(global-set-key "\M-f" 'rg-map)
 (define-key rg-map "p" 'slaughter-rg/project-ask)
 (define-key rg-map "P" 'slaughter-rg/project-point)
 (define-key rg-map "s" 'slaughter-rg/file-ask)
