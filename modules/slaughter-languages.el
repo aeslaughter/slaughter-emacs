@@ -6,13 +6,12 @@
   (add-to-list 'eglot-server-programs
                '(c++-mode . ("clangd")))
   (add-to-list 'eglot-server-programs
-               '(c-mode . ("clangd"))))
+               '(c-mode . ("clangd")))
+  (add-to-list 'eglot-server-programs
+               '(js-mode . ("/Users/andrew/node_modules/.bin/typescript-language-server --stdio"))))
 
 
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
-;;(add-hook 'racket-mode-hook #'lsp)
-
+(slaughter-package-install 'js2-mode)
 (slaughter-package-install 'typescript-mode)
 (slaughter-package-install 'markdown-mode)
 (slaughter-package-install 'racket-mode)
@@ -21,11 +20,17 @@
 (slaughter-package-install 'company)
 (slaughter-package-install 'yasnippet)
 
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+;;(add-hook 'racket-mode-hook #'lsp)
+(add-hook 'js2-mode-hook 'eglot-ensure)
+
 (add-hook 'scribble-mode-hook 'flyspell-mode)
 (add-hook 'racket-mode-hook 'flyspell-mode)
 (add-hook 'typescript-mode-hook 'flyspell-mode)
 (add-hook 'c-mode-hook 'flyspell-mode)
 (add-hook 'c++-mode-hook 'flyspell-mode)
+
 
 
 (slaughter-package-install 'tide)

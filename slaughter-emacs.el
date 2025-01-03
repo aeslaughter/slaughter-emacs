@@ -54,10 +54,11 @@
   (load-file "slaughter-languages.el")
   (load-file "slaughter-backup.el")  
   (load-file "slaughter-switch-source.el")
-  (load-file "slaughter-coreform.el")
-  (load-file "slaughter-popper.el")
-  (load-file "slaughter-rg.el")
-  (load-file "slaughter-trello.el"))
+  ;; (load-file "slaughter-coreform.el")
+  ;(load-file "slaughter-popper.el")
+ ; (load-file "slaughter-rg.el")
+  ;; (load-file "slaughter-trello.el")
+  )
 
 ;; TODO: add keybindings.el???
 (global-set-key "\C-c\C-u" 'comment-or-uncomment-region)

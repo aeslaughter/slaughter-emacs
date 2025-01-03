@@ -7,13 +7,13 @@
 ;;(load-theme 'doom-horizon t)
 ;;(load-theme 'doom-nord)
 
-(global-linum-mode)
+;;(global-linum-mode)
 (setq linum-format "%4d \u2502 ")
 
 
-(slaughter-package-install 'zoom)
-(require 'zoom)
-(zoom-mode nil)
+;;(slaughter-package-install 'zoom)
+;;(require 'zoom)
+;;(zoom-mode nil)
 ;; (setq zoom-size '(0.5 . 0.5))
 ;; (temp-buffer-resize-mode t)
 
