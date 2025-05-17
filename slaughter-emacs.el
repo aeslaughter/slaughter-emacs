@@ -1,6 +1,7 @@
-;;; slaughter-emacs.el --- Emacs for Andrew E Slaughter
+;;; slaughter-emacs --- Emacs for Andrew E Slaughter
 ;;; Commentary:
 ;;; Setup Emacs that is the most bestest
+;;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
 ;;; Code:
 (require 'package)
@@ -47,11 +48,11 @@
 (use-package vertico
   :init
   (vertico-mode)
-  :custom
-  (define-key vertico-map "\C-h" 'vertico-directory-up)
-  (define-key vertico-map "\C-k" 'vertico-previous)
-  (define-key vertico-map "\C-j" 'vertico-next)
-  (define-key vertico-map "\C-l" 'vertico-directory-enter))
+  :bind (:map vertico-map
+  ("C-h" . vertico-directory-up)
+  ("C-k" . vertico-previous)
+  ("C-j" . vertico-next)
+  ("C-l" . vertico-directory-enter)))
 
 
 ;; ORDERLESS
@@ -69,20 +70,17 @@
 (use-package copilot
   :vc (:url "https://github.com/copilot-emacs/copilot.el"
             :rev :newest
-           :branch "main")
-  :init
-  (copilot-mode)
+            :branch "main")
   :hook
   (prog-mode . copilot-mode)
   (prog-mode . (lambda () (setq-local standard-indent 4)))
   :config
-  (setq copilot-indentation-alist '((prog-mode 4) (python-mode 4) (c-mode 4) (c++-mode 4))))
+  (setq copilot-indentation-alist '((prog-mode 4) (python-mode 4) (c-mode 4) (c++-mode 4)))
+  :bind (:map copilot-completion-map
+	      ("<tab>" . copilot-accept-completion)
+	      ("C-<tab>" . copilot-accept-completion-by-word)))
 
-(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
-(define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
-(define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
-
+ 
 
 ;; CONSULT
 (use-package consult)
@@ -229,8 +227,9 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
-  (python-mode . lsp)
-  (lsp-mode . lsp-enable-which-key-integration))
+  (python-mode . lsp-deferred)
+  (lsp-mode . lsp-enable-which-key-integration)
+  :commands lsp-deferred)
 
 ;; lsp-ui
 ;; lsp-treemacs
@@ -242,8 +241,7 @@
   :hook
   (python-mode . lsp-deferred))
 
-
-
+(use-package ruff-format)
 
 
 ;; General setup
@@ -259,8 +257,6 @@
 (global-display-line-numbers-mode 1)
 
 
-
-;; TODO: add keybindings.el???
 (global-set-key "\C-c\C-u" 'comment-or-uncomment-region)
 (global-set-key "\C-h" 'windmove-left)
 (global-set-key "\C-j" 'windmove-down)
@@ -276,7 +272,7 @@
 (setq compilation-scroll-output t)
 (setq-default indent-tabs-mode nil)
 (setq-default delete-trailing-lines t)
-;; (setq default-tab-width 4)
+(setq-default default-tab-width 4)
 ;;(setq compilation-auto-jump-to-first-error t)
 
 
