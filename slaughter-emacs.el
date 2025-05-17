@@ -1,7 +1,8 @@
-;;; -*- lexical-binding: t -*-
 ;;; slaughter-emacs.el --- Emacs for Andrew E Slaughter
-;;; Comentary: Setup emacs that is the most bestest
+;;; Commentary:
+;;; Setup Emacs that is the most bestest
 
+;;; Code:
 (require 'package)
 
 ;; always install it
@@ -68,13 +69,19 @@
   :vc (:url "https://github.com/copilot-emacs/copilot.el"
             :rev :newest
            :branch "main")
+  :init
+  (copilot-mode)
   :hook
   (prog-mode . copilot-mode)
   (prog-mode . (lambda () (setq-local standard-indent 4)))
   :config
-  (setq copilot-indentation-alist '((prog-mode 4) (python-mode 4) (c-mode 4) (c++-mode 4)))
-  :bind (:map copilot-mode-map
-              ("C-<return>" . copilot-accept-completion)))
+  (setq copilot-indentation-alist '((prog-mode 4) (python-mode 4) (c-mode 4) (c++-mode 4))))
+
+(define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+(define-key copilot-completion-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+(define-key copilot-completion-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
+
 
 ;; CONSULT
 (use-package consult)
@@ -147,19 +154,30 @@
 
 (define-key flyspell-mode-map (kbd "M-s") 'flyspell-correct-wrapper)
 
-;; Expand Region
+;; EXPAND REGION
+(use-package expand-region
+  :bind
+  ("M-=" . er/expand-region)
+  ("M--" . er/contract-region)
+  ("M-]" . er/mark-inside-pairs)
+  ("M-\\" . er/mark-outside-pairs)
+  ("M-;" . er/mark-inside-quotes)
+  ("M-'" . er/mark-outside-quotes))
+
+;; MULTIPLE CURSORS
 (use-package multiple-cursors
   :bind
   ("M-<return>" . set-rectangular-region-anchor)
   ("M-RET" . set-rectangular-region-anchor))
  
-
-
-(use-package drag-mode
+;; TEXT MOVE UP/DOWN
+(use-package drag-stuff
+  :init
+  (drag-stuff-global-mode 1)
   :bind
-  ("M-p" . drag-mode-up)
-  ("M-n" . drag-mode-down))
-  
+  ("M-p" . drag-stuff-up)
+  ("M-n" . drag-stuff-down))
+
   
 
 
@@ -180,7 +198,7 @@
 ;; TODO: add keybindings.el???
 (global-set-key "\C-c\C-u" 'comment-or-uncomment-region)
 (global-set-key "\C-h" 'windmove-left)
-(global-set-key "\C-j" 'windmove-down)   
+(global-set-key "\C-j" 'windmove-down)
 (global-set-key "\C-k" 'windmove-up) 
 (global-set-key "\C-l" 'windmove-right)
 
@@ -237,3 +255,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  ;; )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
