@@ -5,7 +5,6 @@
 (slaughter-package-install 'dash)
 (require 'dash)
 
-
 (slaughter-package-install 'flycheck-aspell)
 (require 'flycheck-aspell)
 
