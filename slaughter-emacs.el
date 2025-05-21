@@ -1,7 +1,8 @@
 ;;; slaughter-emacs --- Emacs for Andrew E Slaughter
 ;;; Commentary:
 ;;; Setup Emacs that is the most bestest
-;;; -*- mode: emacs-lisp; lexical-binding: t -*-
+
+
 
 ;;; Code:
 (require 'package)
@@ -18,6 +19,11 @@
 
 (package-initialize)
 
+(setq project-dirs '("~/projects/m3works/awsm"
+                     "~/projects/m3works/scriptomatic"))
+
+
+
 ;; THEME
 (use-package emacs
   :init
@@ -29,13 +35,33 @@
 
 ;; PROJECTILE
 ;; http=s://github.com/bbatsov/projectile
+
+;; Optional: which-key will show you options for partially completed keybindings
+;; It's extremely useful for packages with many keybindings like Projectile.
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode +1))
+
 (use-package projectile
+  :ensure t
   :init
-  (projectile-mode)
-  :custom
-  (setq projectile-project-search-path '(("~/projects/" 2)))
-  (setq projectile-sort-order 'recentf)
-  (global-set-key (kbd "C-x p") 'projectile-find-file))
+  (setq projectile-project-search-path "~/projects/m3works")
+  :config
+  ;; I typically use this keymap prefix on macOS
+  ;;(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  ;; On Linux, however, I usually go with another one
+  (define-key projectile-mode-map (kbd "C-p") 'projectile-command-map)
+  ;; (global-set-key (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
+
+;; (use-package projectile
+;;   :init
+;;   (projectile-mode)
+;;   (setq projectile-project-search-path '(("~/projects/" 2)))
+;;   (setq projectile-sort-order 'recentf)
+;;   :bind
+;;   ("C-x p" . projectile-find-file))
   
 ;; RIPGREP w/ PROJECTILE
 ;; https://github.com/dajva/rg.el
@@ -49,10 +75,10 @@
   :init
   (vertico-mode)
   :bind (:map vertico-map
-  ("C-h" . vertico-directory-up)
-  ("C-k" . vertico-previous)
-  ("C-j" . vertico-next)
-  ("C-l" . vertico-directory-enter)))
+  ("C-b" . vertico-directory-up)
+  ("C-p" . vertico-previous)
+  ("C-n" . vertico-next)
+  ("C-f" . vertico-directory-enter)))
 
 
 ;; ORDERLESS
@@ -77,10 +103,16 @@
   :config
   (setq copilot-indentation-alist '((prog-mode 4) (python-mode 4) (c-mode 4) (c++-mode 4)))
   :bind (:map copilot-completion-map
-	      ("<tab>" . copilot-accept-completion)
-	      ("C-<tab>" . copilot-accept-completion-by-word)))
+	      ("TAB" . copilot-accept-completion)
+	      ("C-TAB" . copilot-accept-completion-by-word)))
+(use-package copilot-chat)
 
- 
+
+;; UNDO
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
+
 
 ;; CONSULT
 (use-package consult)
@@ -90,8 +122,8 @@
 (setq completion-in-region-function
       (lambda (&rest args)
         (apply (if vertico-mode
-                   #'consult-completion-in-region
-                 #'completion--in-region)
+                   'consult-completion-in-region
+                 'completion--in-region)
                args)))
 
 ;;;https://github.com/minad/consult/issues/399#issuecomment-1093122832
@@ -108,7 +140,7 @@
   (interactive)
   (consult-line (thing-at-point 'symbol)))
 
-(defun consult-locate-at-point ()
+(defun cronsult-locate-at-point ()
   (interactive)
   (consult-locate (thing-at-point 'symbol)))
 
@@ -171,10 +203,15 @@
 ;; TEXT MOVE UP/DOWN
 (use-package drag-stuff
   :init
-  (drag-stuff-global-mode 1)
+  (drag-stuff-mode t)
   :bind
   ("M-p" . drag-stuff-up)
   ("M-n" . drag-stuff-down))
+(use-package markdown-mode
+  :bind
+  (:map markdown-mode-map
+        ("M-p" . drag-stuff-up)
+        ("M-n" . drag-stuff-down)))
 
   
 ;; SMARTPARENS
@@ -197,13 +234,15 @@
   (highlight-parentheses-colors '("green1" "red1" "blue1" "orchid1")))
 
 
-;; ORG-MODE
-;(use-package org-mode
-
 
 ;; MAGIT
 (use-package magit)
 
+
+;; TERMINAL
+(use-package vterm
+  :bind
+  ("C-t" . vterm))
 
 ;;; Interactive commands:
 ;; (defun magit-help ()
@@ -227,9 +266,23 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   :hook
-  (python-mode . lsp-deferred)
+  (python-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
-  :commands lsp-deferred)
+  :commands
+  lsp)
+
+(add-hook 'lsp-after-initialize-hook
+          (lambda ()
+            (lsp-workspace-folders-add "~/projects/m3works/aswm")
+            (lsp-workspace-folders-add "~/projects/m3works/scriptomatic")))
+
+
+
+;; (use-package elpy
+;;   :init
+;;   (elpy-enable))
+
+;; (use-package jedi)
 
 ;; lsp-ui
 ;; lsp-treemacs
@@ -241,7 +294,34 @@
   :hook
   (python-mode . lsp-deferred))
 
-(use-package ruff-format)
+;;(use-package ruff-format)
+
+(use-package deft
+  :bind ("<f8>" . deft)
+  :commands (deft)
+  :config (setq deft-directory "~/projects/notes"
+                deft-extensions '("md" "txt" "org")))
+(define-prefix-command 'deft-map)
+(global-set-key "\C-d" 'deft-map)
+(define-key deft-map "h" 'deft-commands)
+(define-key deft-map "d" 'deft)
+(define-key deft-map "n" 'deft-new-file)
+
+
+
+;; (use-package eaf
+;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
+;;   :custom
+;;   ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+;;   (eaf-browser-continue-where-left-off t)
+;;   (eaf-browser-enable-adblocker t)
+;;   (browse-url-browser-function 'eaf-open-browser)
+;;   :config
+;;   (defalias 'browse-web #'eaf-open-browser)
+;;   (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+;;   (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+;;   (eaf-bind-key take_photo "p" eaf-camera-keybinding)
+;;   (eaf-bind-key nil "M-q" eaf-browser-keybinding)) 
 
 
 ;; General setup
@@ -274,24 +354,6 @@
 (setq-default delete-trailing-lines t)
 (setq-default default-tab-width 4)
 ;;(setq compilation-auto-jump-to-first-error t)
-
-
-;; (put 'erase-buffer 'disabled nil)
-;; (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;;'(package-selected-packages nil)
- ;;'(package-vc-selected-packages
- ;;  '((copilot :url "https://github.com/copilot-emacs/copilot.el" :branch
-;;"main"))))
-;;(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;; )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -299,6 +361,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("da75eceab6bea9298e04ce5b4b07349f8c02da305734f7c0c8c6af7b5eaa9738"
+     "014cb63097fc7dbda3edf53eb09802237961cbb4c9e9abd705f23b86511b0a69"
+     "0325a6b5eea7e5febae709dab35ec8648908af12cf2d2b569bedc8da0a3a81c1"
      "aec7b55f2a13307a55517fdf08438863d694550565dee23181d2ebd973ebd6b8"
      default))
  '(package-selected-packages nil))

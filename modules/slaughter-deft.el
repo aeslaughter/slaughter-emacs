@@ -38,7 +38,3 @@ Otherwise, we reduce the line length by a one-character offset."
 (define-key deft-map "h" 'deft-commands)
 (define-key deft-map "d" 'deft)
 (define-key deft-map "n" 'deft-new-file)
-
-
-
-
